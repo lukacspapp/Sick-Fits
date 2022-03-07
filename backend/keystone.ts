@@ -46,13 +46,13 @@ export default withAuth(
     ui: {
       // Show the ui only to users who pass this test
       isAccessAllowed: ({ session }) => {
-        console.log(session);
+        // console.log(session);
         return !!session?.data; // if there is a session and there is a session.data user will be logged in
       },
     },
     session: withItemData(statelessSessions(sessionConfig), {
       // to be able to determine what permission the user has -> this is a garphQL query
-      User: 'id',
+      User: 'id name email',
     }),
   })
 );
