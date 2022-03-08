@@ -25,5 +25,6 @@ export const Porduct = list({
       }
     }),
     price: integer(),
+    // TODO: image field
   },
 });
