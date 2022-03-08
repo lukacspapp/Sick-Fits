@@ -156,6 +156,116 @@ export type UsersCreateInput = {
   readonly data?: UserCreateInput | null;
 };
 
+export type PorductWhereInput = {
+  readonly AND?: ReadonlyArray<PorductWhereInput | null> | null;
+  readonly OR?: ReadonlyArray<PorductWhereInput | null> | null;
+  readonly id?: Scalars['ID'] | null;
+  readonly id_not?: Scalars['ID'] | null;
+  readonly id_in?: ReadonlyArray<Scalars['ID'] | null> | null;
+  readonly id_not_in?: ReadonlyArray<Scalars['ID'] | null> | null;
+  readonly name?: Scalars['String'] | null;
+  readonly name_not?: Scalars['String'] | null;
+  readonly name_contains?: Scalars['String'] | null;
+  readonly name_not_contains?: Scalars['String'] | null;
+  readonly name_starts_with?: Scalars['String'] | null;
+  readonly name_not_starts_with?: Scalars['String'] | null;
+  readonly name_ends_with?: Scalars['String'] | null;
+  readonly name_not_ends_with?: Scalars['String'] | null;
+  readonly name_i?: Scalars['String'] | null;
+  readonly name_not_i?: Scalars['String'] | null;
+  readonly name_contains_i?: Scalars['String'] | null;
+  readonly name_not_contains_i?: Scalars['String'] | null;
+  readonly name_starts_with_i?: Scalars['String'] | null;
+  readonly name_not_starts_with_i?: Scalars['String'] | null;
+  readonly name_ends_with_i?: Scalars['String'] | null;
+  readonly name_not_ends_with_i?: Scalars['String'] | null;
+  readonly name_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly name_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly description?: Scalars['String'] | null;
+  readonly description_not?: Scalars['String'] | null;
+  readonly description_contains?: Scalars['String'] | null;
+  readonly description_not_contains?: Scalars['String'] | null;
+  readonly description_starts_with?: Scalars['String'] | null;
+  readonly description_not_starts_with?: Scalars['String'] | null;
+  readonly description_ends_with?: Scalars['String'] | null;
+  readonly description_not_ends_with?: Scalars['String'] | null;
+  readonly description_i?: Scalars['String'] | null;
+  readonly description_not_i?: Scalars['String'] | null;
+  readonly description_contains_i?: Scalars['String'] | null;
+  readonly description_not_contains_i?: Scalars['String'] | null;
+  readonly description_starts_with_i?: Scalars['String'] | null;
+  readonly description_not_starts_with_i?: Scalars['String'] | null;
+  readonly description_ends_with_i?: Scalars['String'] | null;
+  readonly description_not_ends_with_i?: Scalars['String'] | null;
+  readonly description_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly description_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly status?: Scalars['String'] | null;
+  readonly status_not?: Scalars['String'] | null;
+  readonly status_contains?: Scalars['String'] | null;
+  readonly status_not_contains?: Scalars['String'] | null;
+  readonly status_starts_with?: Scalars['String'] | null;
+  readonly status_not_starts_with?: Scalars['String'] | null;
+  readonly status_ends_with?: Scalars['String'] | null;
+  readonly status_not_ends_with?: Scalars['String'] | null;
+  readonly status_i?: Scalars['String'] | null;
+  readonly status_not_i?: Scalars['String'] | null;
+  readonly status_contains_i?: Scalars['String'] | null;
+  readonly status_not_contains_i?: Scalars['String'] | null;
+  readonly status_starts_with_i?: Scalars['String'] | null;
+  readonly status_not_starts_with_i?: Scalars['String'] | null;
+  readonly status_ends_with_i?: Scalars['String'] | null;
+  readonly status_not_ends_with_i?: Scalars['String'] | null;
+  readonly status_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly status_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly price?: Scalars['Int'] | null;
+  readonly price_not?: Scalars['Int'] | null;
+  readonly price_lt?: Scalars['Int'] | null;
+  readonly price_lte?: Scalars['Int'] | null;
+  readonly price_gt?: Scalars['Int'] | null;
+  readonly price_gte?: Scalars['Int'] | null;
+  readonly price_in?: ReadonlyArray<Scalars['Int'] | null> | null;
+  readonly price_not_in?: ReadonlyArray<Scalars['Int'] | null> | null;
+};
+
+export type PorductWhereUniqueInput = {
+  readonly id: Scalars['ID'];
+};
+
+export type SortPorductsBy =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'description_ASC'
+  | 'description_DESC'
+  | 'status_ASC'
+  | 'status_DESC'
+  | 'price_ASC'
+  | 'price_DESC';
+
+export type PorductUpdateInput = {
+  readonly name?: Scalars['String'] | null;
+  readonly description?: Scalars['String'] | null;
+  readonly status?: Scalars['String'] | null;
+  readonly price?: Scalars['Int'] | null;
+};
+
+export type PorductsUpdateInput = {
+  readonly id: Scalars['ID'];
+  readonly data?: PorductUpdateInput | null;
+};
+
+export type PorductCreateInput = {
+  readonly name?: Scalars['String'] | null;
+  readonly description?: Scalars['String'] | null;
+  readonly status?: Scalars['String'] | null;
+  readonly price?: Scalars['Int'] | null;
+};
+
+export type PorductsCreateInput = {
+  readonly data?: PorductCreateInput | null;
+};
+
 export type _ksListsMetaInput = {
   readonly key?: Scalars['String'] | null;
   readonly auxiliary?: Scalars['Boolean'] | null;
@@ -239,6 +349,42 @@ export type UserListFn = (
   UserListTypeInfo['fields']
 >;
 
+export type PorductListTypeInfo = {
+  key: 'Porduct';
+  fields: 'id' | 'name' | 'description' | 'status' | 'price';
+  backing: {
+    readonly id: string;
+    readonly name?: string | null;
+    readonly description?: string | null;
+    readonly status?: string | null;
+    readonly price?: number | null;
+  };
+  inputs: {
+    where: PorductWhereInput;
+    create: PorductCreateInput;
+    update: PorductUpdateInput;
+  };
+  args: {
+    listQuery: {
+      readonly where?: PorductWhereInput | null;
+      readonly sortBy?: ReadonlyArray<SortPorductsBy> | null;
+      readonly first?: Scalars['Int'] | null;
+      readonly skip?: Scalars['Int'] | null;
+    };
+  };
+};
+
+export type PorductListFn = (
+  listConfig: import('@keystone-next/keystone/schema').ListConfig<
+    PorductListTypeInfo,
+    PorductListTypeInfo['fields']
+  >
+) => import('@keystone-next/keystone/schema').ListConfig<
+  PorductListTypeInfo,
+  PorductListTypeInfo['fields']
+>;
+
 export type KeystoneListsTypeInfo = {
   readonly User: UserListTypeInfo;
+  readonly Porduct: PorductListTypeInfo;
 };

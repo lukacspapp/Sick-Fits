@@ -146,6 +146,126 @@ input UsersCreateInput {
   data: UserCreateInput
 }
 
+""" A keystone list """
+type Porduct {
+  id: ID!
+  name: String
+  description: String
+  status: String
+  price: Int
+}
+
+input PorductWhereInput {
+  AND: [PorductWhereInput]
+  OR: [PorductWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+  description: String
+  description_not: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  description_i: String
+  description_not_i: String
+  description_contains_i: String
+  description_not_contains_i: String
+  description_starts_with_i: String
+  description_not_starts_with_i: String
+  description_ends_with_i: String
+  description_not_ends_with_i: String
+  description_in: [String]
+  description_not_in: [String]
+  status: String
+  status_not: String
+  status_contains: String
+  status_not_contains: String
+  status_starts_with: String
+  status_not_starts_with: String
+  status_ends_with: String
+  status_not_ends_with: String
+  status_i: String
+  status_not_i: String
+  status_contains_i: String
+  status_not_contains_i: String
+  status_starts_with_i: String
+  status_not_starts_with_i: String
+  status_ends_with_i: String
+  status_not_ends_with_i: String
+  status_in: [String]
+  status_not_in: [String]
+  price: Int
+  price_not: Int
+  price_lt: Int
+  price_lte: Int
+  price_gt: Int
+  price_gte: Int
+  price_in: [Int]
+  price_not_in: [Int]
+}
+
+input PorductWhereUniqueInput {
+  id: ID!
+}
+
+enum SortPorductsBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  status_ASC
+  status_DESC
+  price_ASC
+  price_DESC
+}
+
+input PorductUpdateInput {
+  name: String
+  description: String
+  status: String
+  price: Int
+}
+
+input PorductsUpdateInput {
+  id: ID!
+  data: PorductUpdateInput
+}
+
+input PorductCreateInput {
+  name: String
+  description: String
+  status: String
+  price: Int
+}
+
+input PorductsCreateInput {
+  data: PorductCreateInput
+}
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -339,6 +459,19 @@ type Query {
   """ Retrieve the meta-data for the User list. """
   _UsersMeta: _ListMeta
 
+  """ Search for all Porduct items which match the where clause. """
+  allPorducts(where: PorductWhereInput, search: String, sortBy: [SortPorductsBy!], orderBy: String, first: Int, skip: Int): [Porduct]
+
+  """ Search for the Porduct item with the matching ID. """
+  Porduct(where: PorductWhereUniqueInput!): Porduct
+
+  """ Perform a meta-query on all Porduct items which match the where clause. 
+  """
+  _allPorductsMeta(where: PorductWhereInput, search: String, sortBy: [SortPorductsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+
+  """ Retrieve the meta-data for the Porduct list. """
+  _PorductsMeta: _ListMeta
+
   """ Retrieve the meta-data for all lists. """
   _ksListsMeta(where: _ksListsMetaInput): [_ListMeta]
 
@@ -366,6 +499,24 @@ type Mutation {
 
   """ Delete multiple User items by ID. """
   deleteUsers(ids: [ID!]): [User]
+
+  """ Create a single Porduct item. """
+  createPorduct(data: PorductCreateInput): Porduct
+
+  """ Create multiple Porduct items. """
+  createPorducts(data: [PorductsCreateInput]): [Porduct]
+
+  """ Update a single Porduct item by ID. """
+  updatePorduct(id: ID!, data: PorductUpdateInput): Porduct
+
+  """ Update multiple Porduct items by ID. """
+  updatePorducts(data: [PorductsUpdateInput]): [Porduct]
+
+  """ Delete a single Porduct item by ID. """
+  deletePorduct(id: ID!): Porduct
+
+  """ Delete multiple Porduct items by ID. """
+  deletePorducts(ids: [ID!]): [Porduct]
   authenticateUserWithPassword(email: String!, password: String!): UserAuthenticationWithPasswordResult!
   createInitialUser(data: CreateInitialUserInput!): UserAuthenticationWithPasswordSuccess!
   endSession: Boolean!
