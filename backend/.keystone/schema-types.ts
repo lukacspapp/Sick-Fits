@@ -156,9 +156,16 @@ export type UsersCreateInput = {
   readonly data?: UserCreateInput | null;
 };
 
-export type PorductWhereInput = {
-  readonly AND?: ReadonlyArray<PorductWhereInput | null> | null;
-  readonly OR?: ReadonlyArray<PorductWhereInput | null> | null;
+export type ProductImageRelateToOneInput = {
+  readonly create?: ProductImageCreateInput | null;
+  readonly connect?: ProductImageWhereUniqueInput | null;
+  readonly disconnect?: ProductImageWhereUniqueInput | null;
+  readonly disconnectAll?: Scalars['Boolean'] | null;
+};
+
+export type ProductWhereInput = {
+  readonly AND?: ReadonlyArray<ProductWhereInput | null> | null;
+  readonly OR?: ReadonlyArray<ProductWhereInput | null> | null;
   readonly id?: Scalars['ID'] | null;
   readonly id_not?: Scalars['ID'] | null;
   readonly id_in?: ReadonlyArray<Scalars['ID'] | null> | null;
@@ -199,6 +206,8 @@ export type PorductWhereInput = {
   readonly description_not_ends_with_i?: Scalars['String'] | null;
   readonly description_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly description_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly photo?: ProductImageWhereInput | null;
+  readonly photo_is_null?: Scalars['Boolean'] | null;
   readonly status?: Scalars['String'] | null;
   readonly status_not?: Scalars['String'] | null;
   readonly status_contains?: Scalars['String'] | null;
@@ -227,43 +236,47 @@ export type PorductWhereInput = {
   readonly price_not_in?: ReadonlyArray<Scalars['Int'] | null> | null;
 };
 
-export type PorductWhereUniqueInput = {
+export type ProductWhereUniqueInput = {
   readonly id: Scalars['ID'];
 };
 
-export type SortPorductsBy =
+export type SortProductsBy =
   | 'id_ASC'
   | 'id_DESC'
   | 'name_ASC'
   | 'name_DESC'
   | 'description_ASC'
   | 'description_DESC'
+  | 'photo_ASC'
+  | 'photo_DESC'
   | 'status_ASC'
   | 'status_DESC'
   | 'price_ASC'
   | 'price_DESC';
 
-export type PorductUpdateInput = {
+export type ProductUpdateInput = {
   readonly name?: Scalars['String'] | null;
   readonly description?: Scalars['String'] | null;
+  readonly photo?: ProductImageRelateToOneInput | null;
   readonly status?: Scalars['String'] | null;
   readonly price?: Scalars['Int'] | null;
 };
 
-export type PorductsUpdateInput = {
+export type ProductsUpdateInput = {
   readonly id: Scalars['ID'];
-  readonly data?: PorductUpdateInput | null;
+  readonly data?: ProductUpdateInput | null;
 };
 
-export type PorductCreateInput = {
+export type ProductCreateInput = {
   readonly name?: Scalars['String'] | null;
   readonly description?: Scalars['String'] | null;
+  readonly photo?: ProductImageRelateToOneInput | null;
   readonly status?: Scalars['String'] | null;
   readonly price?: Scalars['Int'] | null;
 };
 
-export type PorductsCreateInput = {
-  readonly data?: PorductCreateInput | null;
+export type ProductsCreateInput = {
+  readonly data?: ProductCreateInput | null;
 };
 
 export type CloudinaryImageFormat = {
@@ -298,6 +311,13 @@ export type CloudinaryImageFormat = {
   readonly transformation?: Scalars['String'] | null;
 };
 
+export type ProductRelateToOneInput = {
+  readonly create?: ProductCreateInput | null;
+  readonly connect?: ProductWhereUniqueInput | null;
+  readonly disconnect?: ProductWhereUniqueInput | null;
+  readonly disconnectAll?: Scalars['Boolean'] | null;
+};
+
 export type ProductImageWhereInput = {
   readonly AND?: ReadonlyArray<ProductImageWhereInput | null> | null;
   readonly OR?: ReadonlyArray<ProductImageWhereInput | null> | null;
@@ -327,6 +347,8 @@ export type ProductImageWhereInput = {
   readonly altText_not_ends_with_i?: Scalars['String'] | null;
   readonly altText_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly altText_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly product?: ProductWhereInput | null;
+  readonly product_is_null?: Scalars['Boolean'] | null;
 };
 
 export type ProductImageWhereUniqueInput = {
@@ -337,11 +359,14 @@ export type SortProductImagesBy =
   | 'id_ASC'
   | 'id_DESC'
   | 'altText_ASC'
-  | 'altText_DESC';
+  | 'altText_DESC'
+  | 'product_ASC'
+  | 'product_DESC';
 
 export type ProductImageUpdateInput = {
   readonly image?: any | null;
   readonly altText?: Scalars['String'] | null;
+  readonly product?: ProductRelateToOneInput | null;
 };
 
 export type ProductImagesUpdateInput = {
@@ -352,6 +377,7 @@ export type ProductImagesUpdateInput = {
 export type ProductImageCreateInput = {
   readonly image?: any | null;
   readonly altText?: Scalars['String'] | null;
+  readonly product?: ProductRelateToOneInput | null;
 };
 
 export type ProductImagesCreateInput = {
@@ -441,48 +467,50 @@ export type UserListFn = (
   UserListTypeInfo['fields']
 >;
 
-export type PorductListTypeInfo = {
-  key: 'Porduct';
-  fields: 'id' | 'name' | 'description' | 'status' | 'price';
+export type ProductListTypeInfo = {
+  key: 'Product';
+  fields: 'id' | 'name' | 'description' | 'photo' | 'status' | 'price';
   backing: {
     readonly id: string;
     readonly name?: string | null;
     readonly description?: string | null;
+    readonly photo?: string | null;
     readonly status?: string | null;
     readonly price?: number | null;
   };
   inputs: {
-    where: PorductWhereInput;
-    create: PorductCreateInput;
-    update: PorductUpdateInput;
+    where: ProductWhereInput;
+    create: ProductCreateInput;
+    update: ProductUpdateInput;
   };
   args: {
     listQuery: {
-      readonly where?: PorductWhereInput | null;
-      readonly sortBy?: ReadonlyArray<SortPorductsBy> | null;
+      readonly where?: ProductWhereInput | null;
+      readonly sortBy?: ReadonlyArray<SortProductsBy> | null;
       readonly first?: Scalars['Int'] | null;
       readonly skip?: Scalars['Int'] | null;
     };
   };
 };
 
-export type PorductListFn = (
+export type ProductListFn = (
   listConfig: import('@keystone-next/keystone/schema').ListConfig<
-    PorductListTypeInfo,
-    PorductListTypeInfo['fields']
+    ProductListTypeInfo,
+    ProductListTypeInfo['fields']
   >
 ) => import('@keystone-next/keystone/schema').ListConfig<
-  PorductListTypeInfo,
-  PorductListTypeInfo['fields']
+  ProductListTypeInfo,
+  ProductListTypeInfo['fields']
 >;
 
 export type ProductImageListTypeInfo = {
   key: 'ProductImage';
-  fields: 'id' | 'image' | 'altText';
+  fields: 'id' | 'image' | 'altText' | 'product';
   backing: {
     readonly id: string;
     readonly image?: any;
     readonly altText?: string | null;
+    readonly product?: string | null;
   };
   inputs: {
     where: ProductImageWhereInput;
@@ -511,6 +539,6 @@ export type ProductImageListFn = (
 
 export type KeystoneListsTypeInfo = {
   readonly User: UserListTypeInfo;
-  readonly Porduct: PorductListTypeInfo;
+  readonly Product: ProductListTypeInfo;
   readonly ProductImage: ProductImageListTypeInfo;
 };

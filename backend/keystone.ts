@@ -6,7 +6,7 @@ import {
   statelessSessions,
 } from '@keystone-next/keystone/session';
 import { User } from './schemas/User';
-import { Porduct } from './schemas/Products';
+import { Product } from './schemas/Products';
 import { ProductImage } from './schemas/ProductImage';
 
 
@@ -45,7 +45,7 @@ export default withAuth(
     },
     lists: createSchema({
       User,
-      Porduct,
+      Product,
       ProductImage,
     }),
     ui: {
