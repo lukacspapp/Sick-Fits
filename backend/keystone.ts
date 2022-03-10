@@ -10,6 +10,7 @@ import { Product } from './schemas/Products';
 import { ProductImage } from './schemas/ProductImage';
 
 
+
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits';
 
@@ -41,7 +42,10 @@ export default withAuth(
     db: {
       adapter: 'mongoose',
       url: databaseURL,
-      // TODO: add data seeding here
+      async onConnect(keystone) {
+        console.log('Connected to the database!')
+        await insertSeedData(keystone)
+      },
     },
     lists: createSchema({
       User,

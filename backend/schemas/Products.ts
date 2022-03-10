@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { integer, select, text, relationship } from '@keystone-next/fields';
 import { list } from '@keystone-next/keystone/schema';
 
@@ -37,4 +36,3 @@ export const Product = list({
     // TODO: Photo
   },
 });
-
