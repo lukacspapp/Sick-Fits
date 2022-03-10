@@ -8,6 +8,7 @@ import {
 import { User } from './schemas/User';
 import { Product } from './schemas/Products';
 import { ProductImage } from './schemas/ProductImage';
+import { insertSeedData } from './seed-data';
 
 
 
@@ -44,7 +45,9 @@ export default withAuth(
       url: databaseURL,
       async onConnect(keystone) {
         console.log('Connected to the database!')
-        await insertSeedData(keystone)
+        if (process.argv.includes('--seed-data')) {
+          await insertSeedData(keystone)
+        }
       },
     },
     lists: createSchema({
