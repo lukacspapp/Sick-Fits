@@ -12,5 +12,5 @@ export default function Myapp({ Component, pageProps}) {
     <Page>
       <Component {...pageProps} />
     </Page>
-  )
+  );
 }
