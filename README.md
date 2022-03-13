@@ -6,4 +6,5 @@ Next.js
 Pages lowercase naming of files as it is just a page and not a reusable component
 Server rendering, fast, beneficial for SEO
 
-6
+By sending along the cookies and headers with every request it will allow the page the render the logged in state on the server side so we do not get that odd flicker.
+Local storage can not be send to the server when the page is refreshed but the cookie can that is why the JWT is in the cookie🍪
