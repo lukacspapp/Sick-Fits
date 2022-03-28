@@ -10,6 +10,7 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function Myapp({ Component, pageProps, apollo }) {
+  console.log(apollo);
   return (
     <ApolloProvider client={apollo}>
       <Page>
@@ -20,6 +21,7 @@ function Myapp({ Component, pageProps, apollo }) {
 }
 
 Myapp.getInitialProps = async function ({ Component, ctx }) {
+  // if any of the pages have a getIntitialProps on them (which they will) then we are going to wait and fetch data
   let pageProps = [];
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
