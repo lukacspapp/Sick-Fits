@@ -9,7 +9,7 @@ export default function useForm(intitial = {}) {
       value = parseInt(value); // when we update the price in the form it will save it as a string so we need to convert it back to number because the backend expects a number
     }
     if (type === 'file') {
-      value[0] = e.target.files;
+      [value] = e.target.files;
     }
     setInputs({
       ...inputs,
