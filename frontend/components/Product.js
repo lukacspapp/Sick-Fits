@@ -4,7 +4,6 @@ import Title from './styles/Title';
 import PriceTag from './styles/PriceTag';
 import formatMoney from '../lib/formatMoney';
 
-
 export default function Product({ product }) {
   // nested chaining in src
   return (
