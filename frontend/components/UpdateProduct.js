@@ -33,16 +33,12 @@ const UPDATE_PRODUCT_MUTATION = gql`
 
 export default function UpdateProduct({ id }) {
   // 1. Need the existing product
-  const { data, loading, error } = useQuery(SINGLE_PRODUCT_QUERY, {
-    variables: { id },
-  });
+  const { data, loading, error } = useQuery(SINGLE_PRODUCT_QUERY, {variables: { id }});
   // 2. Need to get the mutation to update the product
   const [
     updateProduct,
     { data: updateData, error: updateError, loading: updateLoading },
-  ] = useMutation(UPDATE_PRODUCT_MUTATION, {
-    variables: { id },
-  });
+  ] = useMutation(UPDATE_PRODUCT_MUTATION, {variables: { id },});
   // 3. Need the form to handle the updates
   return <div>Update {id} !</div>;
 }
